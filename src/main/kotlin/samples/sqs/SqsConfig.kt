@@ -24,6 +24,7 @@ class SqsConfig {
     
     companion object {
         const val QUEUE_NAME = "sample-queue"
+        const val DLQ_NAME = "sample-queue-dlq"
     }
     
     @Bean

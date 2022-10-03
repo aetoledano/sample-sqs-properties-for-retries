@@ -13,7 +13,6 @@ class SqsPublisher(
         val evt = Event(
             name = "SampleEvent",
             time = System.currentTimeMillis(),
-            attempt = 1
         )
         println("Sent ${evt.name}")
         messagingTemplate.convertAndSend(
