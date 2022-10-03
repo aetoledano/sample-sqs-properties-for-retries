@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+      - "${PORT_WEB_UI-11000}:${PORT_WEB_UI-8080}"
+    environment:
+      - LOCALSTACK_SERVICES=sqs
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "./docker/localstack/create-queues.sh:/docker-entrypoint-initaws.d/create-queues.sh"
+    healthcheck:
+      test: awslocal sqs list-queues
+      interval: 3s
+      timeout: 10s
