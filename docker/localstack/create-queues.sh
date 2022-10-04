@@ -16,6 +16,6 @@ echo Arn: $DLQ_SQS_ARN
 
 awslocal sqs create-queue --queue-name $MAIN_QUEUE --attributes '{
                                                                       "RedrivePolicy": "{\"deadLetterTargetArn\":\"'"$DLQ_SQS_ARN"'\",\"maxReceiveCount\":\"3\"}",
-                                                                      "DelaySeconds": "10",
+                                                                      "DelaySeconds": "5",
                                                                       "VisibilityTimeout": "10"
                                                                       }'
